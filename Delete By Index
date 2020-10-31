@@ -1,0 +1,42 @@
+bool LinkedList::deleteNodeByIndex( int index )
+{
+    bool exit;
+    Node *pPre = NULL,
+         *pCur = head.headPtr;
+    int currentIndex = 0;
+
+    while ( pCur )
+    {
+       
+        if (currentIndex == index)
+        {
+            break;
+        }
+        currentIndex++;
+        pPre = pCur;
+        pCur = pCur -> next;
+    }
+
+  
+    if ( pCur )
+    {
+        if ( pPre )
+        {
+            pPre -> next = pCur -> next;
+            delete pCur;
+            head.count--;
+            exit = true; 
+        }
+        else
+        {
+            head.headPtr = pCur -> next;
+            delete pCur;
+            head.count--;
+            exit = true; 
+        }
+    }
+    else
+        exit = false; 
+
+    return exit;
+}
